@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /*background-color: #f4f4f9; */
+        }
+        .container {
+            width: 50%;
+            margin: 100px auto;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+        }
+        .input-container input {
+            padding: 10px;
+            width: 70%;
+            font-size: 18px;
+        }
+        .input-container button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+        .weather-info {
+            margin-top: 20px;
+        }
+        .weather-info img {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather Tracker</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="input-container">
+                <input type="text" name="city" placeholder="Enter city name" required>
+                <button type="submit">Get Weather</button>
+            </div>
+        </form>
+
+        {% if city %}
+        <div class="weather-info">
+            <h2>Weather in {{ city }}</h2>
+            <p>Temperature: {{ temperature }}°F</p>
+            <p>Description: {{ description }}</p>
+            <img src="http://openweathermap.org/img/wn/{{ icon }}.png" alt="Weather Icon">
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
