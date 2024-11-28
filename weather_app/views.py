@@ -20,6 +20,7 @@ def index(request):
         }
 
         return render(request, 'index.html', weather_data)
+    # Get Request
     else:
         return render(request, "index.html")
 
